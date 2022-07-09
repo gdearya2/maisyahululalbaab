@@ -9,10 +9,16 @@ use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $products = product::latest()->filter(request(['cari']))->paginate(12);
+        if ($request->ajax()) {
+            return view('product.product-pagination', [
+                'categories' => Category::all()
+            ]);
+        };
         return view('product', [
-            'products' => product::latest()->filter(request(['cari']))->paginate(12),
+            'products' => $products,
             'categories' => Category::all()
         ]);
     }

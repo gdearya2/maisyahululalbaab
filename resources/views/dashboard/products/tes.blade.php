@@ -36,6 +36,16 @@
                                     </button>
                                     </div>
                                     <div class="modal-body">
+                                            {{-- CATATAN --}}
+                                            <div class="alert alert-danger" style="color:#842029;background-color:#f8d7da;border-color:#f5c2c7" role="alert">
+                                                <div class="font-weight-bold">Catatan</div>
+                                                <ul>
+                                                    <li>File yang diupload harus berupa Gambar</li>
+                                                    <li>File harus memiliki ukuran maksimal 1MB</li>
+                                                    <li><span style="color:red;font-size:20px">*</span> tidak boleh kosong, harus diisi</li>
+                                                </ul>
+                                            </div>
+                                            {{-- Akhir Catatan --}}
                                             <form method="post" id="form-create-product" action="#" enctype="multipart/form-data">
                                                 @csrf
                                                           <div class="card-body" style="padding: 1rem !important;">
@@ -77,13 +87,7 @@
                                                                 <div class="error_harga_product ">
                                                                   
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label for="harga_coret_product">Harga Coret</label>
-                                                                    <input type="text" class="form-control " id="harga_coret_product" name="harga_coret_product" autocomplete="off"  placeholder="Masukkan Harga Coret">
-                                                                </div>
-                                                                <div class="error_harga_coret_product ">
-                                                                  
-                                                                </div>
+
                                                                 <div class="form-group">
                                                                     <label for="image1">Gambar Product Utama (300x300) <span style="color: red;">*</span></label>
                                                                     <img class="img-preview img-fluid mb-3 col-sm-5 d-block" >
@@ -167,8 +171,17 @@
                                     </button>
                                     </div>
                                     <div class="modal-body">
-                                            <form method="post" id="form-create-product" action="#" enctype="multipart/form-data">
-                                                @method('PUT')
+                                        {{-- CATATAN --}}
+                                        <div class="alert alert-danger" style="color:#842029;background-color:#f8d7da;border-color:#f5c2c7" role="alert">
+                                            <div class="font-weight-bold">Catatan</div>
+                                            <ul>    
+                                                <li>File yang diupload harus berupa Gambar</li>
+                                                <li>File harus memiliki ukuran maksimal 1MB</li>
+                                                <li><span style="color:red;font-size:20px">*</span> tidak boleh kosong, harus diisi</li>
+                                            </ul>
+                                        </div>
+                                        {{-- Akhir Catatan --}}
+                                            <form method="post" id="form-create-product-edit" action="#" enctype="multipart/form-data">
                                                 @csrf
                                                           <div class="card-body" style="padding: 1rem !important;">
                                                                 <input type="hidden" name="product_id" id="product_id" value="">
@@ -176,7 +189,7 @@
                                                                     <label for="nama_product">Nama Product <span style="color: red;">*</span></label>
                                                                     <input type="text" class="form-control" id="nama_product_edit"  name="nama_product" autocomplete="off" required placeholder="Masukkan Nama Product" >
                                                                 </div>
-                                                                <div class="error_nama_product">
+                                                                <div class="error_nama_product_edit">
                                                                 </div>
                                                                 <div class="form-group">
                                                                    <label for="info_product">Info Product <span style="color: red;">*</span></label>
@@ -188,7 +201,7 @@
                                                                        <option value="Promo">Promo</option>
                                                                    </select>
                                                                </div> 
-                                                               <div class="error_info_product">
+                                                               <div class="error_info_product_edit">
                                                                   
                                                                </div>
                                                                 <div class="form-group">
@@ -200,23 +213,17 @@
                                                                        @endforeach
                                                                     </select>
                                                                </div> 
-                                                               <div class="error_kategori_product ">
+                                                               <div class="error_kategori_product_edit ">
                                                                   
                                                                </div>
                                                                 <div class="form-group">
                                                                     <label for="harga_product">Harga Product <span style="color: red;">*</span></label>
                                                                     <input type="text" class="form-control " id="harga_product_edit" name="harga_product" autocomplete="off"  required placeholder="Masukkan Harga Product" >
                                                                 </div>
-                                                                <div class="error_harga_product ">
+                                                                <div class="error_harga_product_edit ">
                                                                   
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label for="harga_coret_product">Harga Coret</label>
-                                                                    <input type="text" class="form-control " id="harga_coret_product_edit" name="harga_coret_product" autocomplete="off"  placeholder="Masukkan Harga Coret">
-                                                                </div>
-                                                                <div class="error_harga_coret_product ">
-                                                                  
-                                                                </div>
+
                                                                 <div class="form-group">
                                                                     <label for="image1">Gambar Product Utama (300x300) <span style="color: red;">*</span></label>
                                                                     <img class="img-preview img-fluid mb-3 col-sm-5 d-block" >
@@ -227,7 +234,7 @@
                                                                       </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="error_gambar_product ">
+                                                                <div class="error_gambar_product_edit ">
                                                                   
                                                                 </div>
                                                                 <div class="form-group">
@@ -239,7 +246,7 @@
                                                                       </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="error_gambar_product_detail ">
+                                                                <div class="error_gambar_product_detail_edit ">
                                                                   
                                                                 </div>
                                                                 <div class="form-group">
@@ -251,7 +258,7 @@
                                                                       </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="error_gambar_product_detail2 ">
+                                                                <div class="error_gambar_product_detail2_edit ">
                                                                   
                                                                 </div>
                                                                 <div class="form-group">
@@ -263,22 +270,22 @@
                                                                       </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="error_gambar_product_detail3 ">
+                                                                <div class="error_gambar_product_detail3_edit ">
                                                                   
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="deskripsi_product_edit" class="form-label">Deskripsi Product <span style="color: red;">*</span></label>
-                                                                    <input required id="deskripsi_product_edit" type="hidden" name="deskripsi_product">
-                                                                    <trix-editor input="deskripsi_product_edit" ></trix-editor>
+                                                                    <input required   type="hidden"  name="deskripsi_product">
+                                                                    <trix-editor  input="deskripsi_product_edit" ></trix-editor>
                                                                 </div>
-                                                                <div class="error_deskripsi_product ">
+                                                                <div class="error_deskripsi_product_edit ">
                                                                 </div>
                                                             </div>
                                     </form>
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary edit_product" onclick="editData()" >Edit Product</button>
+                                    <button type="button" class="btn btn-primary edit_product" onclick="EditData()" >Edit Product</button>
                                     </div>
                                 </div>
                                 </div>
@@ -401,22 +408,6 @@ function CreateData(){
                         $('#harga_product').removeClass('is-invalid');
                         $('#harga_product').addClass('is-valid');
                     }  
-                    if(data.responseJSON.errors.harga_coret_product){
-                        $('.error_harga_coret_product').html(data.responseJSON.errors.harga_coret_product);
-                        $('.error_harga_coret_product').addClass('error-feedback');
-                        $('#harga_coret_product').addClass('is-invalid');
-                        $('#harga_coret_product').removeClass('is-valid');
-                    } else if($('#harga_coret_product').val().length > 0){
-                        $('.error_harga_coret_product').removeClass('error-feedback');
-                        $('.error_harga_coret_product').empty();
-                        $('#harga_coret_product').removeClass('is-invalid');
-                        $('#harga_coret_product').addClass('is-valid');
-                    }  else {
-                        $('.error_harga_coret_product').removeClass('error-feedback');
-                        $('.error_harga_coret_product').empty();
-                        $('#harga_coret_product').removeClass('is-invalid');
-                        $('#harga_coret_product').removeClass('is-valid');
-                    }
                     if(data.responseJSON.errors.gambar_product){
                         $('.error_gambar_product').html(data.responseJSON.errors.gambar_product);
                         $('.error_gambar_product').addClass('error-feedback');
@@ -485,6 +476,36 @@ function CreateData(){
             
     }).submit();
 }
+
+//Edit Data
+function EditData(){
+    var productID = $('#product_id').val();
+    $('#form-create-product-edit').ajaxForm({
+            url: "/dashboard/products/" + productID,
+            type: "PUT",
+            dataType: "json",
+            success: function(data){
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Product berhasil diedit',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                // Hide Modal Create
+                $('#ModalEdit').modal('hide');
+                // Reset Form
+                $('#form-create-product')[0].reset();
+                //Remove if have Errors
+                
+                //Update DataTable
+                $('#table_product').DataTable().draw();
+            },
+            error: function(data){
+                console.log(data);
+            }
+        }).submit();
+}
 </script>
 <script>
 $(document).ready(function () {
@@ -521,22 +542,20 @@ $(document).ready(function () {
             dataType: "json",
             success: function(data){
                 console.log(data.product[0]);
+                 $('#product_id').val(data.product[0].id);
                  $('#nama_product_edit').val(data.product[0].nama_product);
                  $('#info_product_edit').val(data.product[0].info_product);
                  $('#category_id_edit').val(data.product[0].category_id);
                  $('#harga_product_edit').val(data.product[0].harga_product);
-                 $('#harga_coret_product_edit').val(data.product[0].harga_coret_product);
                  $('.label_product_edit').text(data.product[0].gambar_product);
                  $('.label_product1_edit').text(data.product[0].gambar_detailProduct1);
                  $('.label_product2_edit').text(data.product[0].gambar_detailProduct2);
                  $('.label_product3_edit').text(data.product[0].gambar_detailProduct3);
-                 $('#deskripsi_product_edit').val(data.product[0].deskripsi_product);
+                 $('#deskripsi_product_edit').html(data.product[0].deskripsi_product);
             }
-        })
-       
+        })    
     })
-
-       
+    
 
     // // Delete Product
     $(document).on('click','.hapus',function(){

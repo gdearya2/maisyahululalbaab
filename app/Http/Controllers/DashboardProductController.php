@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+
 use App\Http\Requests\StoreproductRequest;
 use App\Http\Requests\UpdateproductRequest;
 
@@ -140,7 +141,7 @@ class DashboardProductController extends Controller
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateproductRequest $request, product $product)
+    public function update(Request $request, product $product)
     {
         db::beginTransaction();
         try {
@@ -152,8 +153,8 @@ class DashboardProductController extends Controller
                 'harga_coret_product' => 'nullable',
                 'gambar_product' => 'image|file|max:1024',
                 'gambar_detailProduct1' => 'image|file|max:1024',
-                'gambar_detailProduct2' => $request->gambar_detailProduct2 ? 'image|max:1024' : 'present',
-                'gambar_detailProduct3' => $request->gambar_detailProduct3 ? 'image|max:1024' : 'present',
+                'gambar_detailProduct2' => $request->gambar_detailProduct2 ? 'image|max:1024' : 'nullable',
+                'gambar_detailProduct3' => $request->gambar_detailProduct3 ? 'image|max:1024' : 'nullable',
                 'deskripsi_product' => 'required'
             ]);
             $images = ['gambar_product', 'gambar_detailProduct1', 'gambar_detailProduct2', 'gambar_detailProduct3'];
@@ -179,7 +180,8 @@ class DashboardProductController extends Controller
             return redirect('/dashboard/products')->with('success', 'Product berhasil di update!');
         } catch (\Throwable $th) {
             DB::rollBack();
-            $th->getMessage();
+
+            return response()->json(['errors' => $th->validator->messages(), 'data' => $request->all()], 400);
         }
     }
 
