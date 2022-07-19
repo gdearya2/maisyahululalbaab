@@ -61,6 +61,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="/dashboard/categories" class="nav-link {{ Request::is('dashboard/categories*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-th-large"></i>
+              <p>
+                Category
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="/dashboard/flashsale" class="nav-link {{ Request::is('dashboard/flashsale*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tags"></i>
               <p>

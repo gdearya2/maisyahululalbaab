@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardCategoryController;
 use App\Models\product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -36,8 +37,10 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 Route::resource('/dashboard/anggota', DashboardMemberController::class)->middleware('auth');
-Route::resource('/dashboard/products', DashboardProductController::class, ['names' => 'products'])->middleware('auth');
+Route::resource('/dashboard/products', DashboardProductController::class)->middleware('auth');
 Route::get('/dashboard/products/get/{id}', [DashboardProductController::class, 'getProduct'])->middleware('auth');
+Route::get('/dashboard/categories/get/{id}', [DashboardCategoryController::class, 'getCategories'])->middleware('auth');
+Route::resource('dashboard/categories', DashboardCategoryController::class)->middleware('auth');
 Route::resource('/dashboard/flashsale', DashboardFlashsaleController::class)->middleware('auth');
 Route::post('/dashboard/flashsale/{remove_flashsale}', [DashboardFlashsaleController::class, 'removeFlashsale']);
 Route::post('/dashboard/flashsale/{add_flashsale}', [DashboardFlashsaleController::class, 'addFlashsale']);

@@ -17,13 +17,7 @@
                             </div>
                         @endif
                         <div class=" row ">
-                            {{-- <div class="mb-3">
-                                <a href="/dashboard/products/create"><button class="btn btn-primary">Tambah Product</button></a>
-                            </div> --}}
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary mb-3" onClick="showCreate()">
-                                Tambah Product
-                            </button>
+                            
                             
                             <!-- Modal Create Product -->
                             <div class="modal fade" id="ModalCreate" tabindex="-1" role="dialog" aria-labelledby="ModalCreateLabel" aria-hidden="true">
@@ -157,7 +151,71 @@
                         </div>
 
 
-
+                        <!-- Modal Detail Product -->
+                        <div class="modal fade" id="ModalDetail" tabindex="-1" role="dialog" aria-labelledby="ModalDetailLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="ModalDetailLabel">Detail Product</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                        <form method="post" id="form-detail-product" action="#" enctype="multipart/form-data">
+                                            @csrf
+                                                      <div class="card-body" style="padding: 1rem !important;">
+                                                            <div class="form-group">
+                                                                <label for="nama_product">Nama Product <span style="color: red;">*</span></label>
+                                                                <input readonly type="text" class="form-control" id="nama_detail_product" name="nama_product" autocomplete="off" required placeholder="Masukkan Nama Product" >
+                                                            </div>
+                                                            <div class="form-group">
+                                                               <label for="info_product">Info Product <span style="color: red;">*</span></label>
+                                                               <select class="custom-select rounded-2" id="info_detail_product" name="info_product">                       
+                                                                   <option class="info_detail_product" selected readonly ></option>
+                                                               </select>
+                                                           </div> 
+                                                            <div class="form-group">
+                                                               <label for="category_id">Kategori Product <span style="color: red;">*</span></label>
+                                                               <select class="custom-select rounded-2" id="category_detail_product" name="category_id"> 
+                                                                   <option class="category_detail_product" selected readonly></option>              
+                                                                </select>
+                                                           </div> 
+                                                            <div class="form-group">
+                                                                <label for="harga_product">Harga Product <span style="color: red;">*</span></label>
+                                                                <input readonly type="text" class="form-control " id="harga_detail_product" name="harga_product" autocomplete="off"  required placeholder="Masukkan Harga Product" >
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="image1">Gambar Product Utama (300x300) <span style="color: red;">*</span></label>
+                                                                <img id="gambar_detail_product_utama" class="img-preview img-fluid mb-3 col-sm-5 d-block" src="">  
+                                                            </div>
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="image2">Gambar Product Detail 1 (1920x600) <span style="color: red;">*</span></label>
+                                                                <img id="gambar_detail_product1" class="img-preview img-fluid mb-3 col-sm-5 d-block" src="">  
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="image1">Gambar Product Detail 2 (jika ada) (1920x600)</label>
+                                                                <img id="gambar_detail_product2" class="img-preview img-fluid mb-3 col-sm-5 d-block" src="">  
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="image1">Gambar Product Detail 3 (jika ada) (1920x600)</label>
+                                                                <img id="gambar_detail_product3" class="img-preview img-fluid mb-3 col-sm-5 d-block" src="">  
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="deskripsi_product">Deskripsi Product <span style="color: red;">*</span></label>
+                                                                <input readonly type="text" class="form-control deskripsi_detail_product" id="deskripsi_detail_product" name="deskripsi_product" autocomplete="off"  >
+                                                            </div>
+                                                        </div>
+                                </form>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+            
 
                         <div class="row">
                             <!-- Modal Edit Product -->
@@ -208,7 +266,7 @@
                                                                    <label for="category_id">Kategori Product <span style="color: red;">*</span></label>
                                                                    <select class="custom-select rounded-2" id="category_id_edit" name="category_id"> 
                                                                        <option>Pilih Kategori Product..</option>       
-                                                                       @foreach ($categories as $category)               
+                                                                       @foreach ($categories as $category)                         
                                                                        <option value="{{ $category->id }}">{{ $category->nama_kategori}}</option>
                                                                        @endforeach
                                                                     </select>
@@ -275,8 +333,8 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="deskripsi_product_edit" class="form-label">Deskripsi Product <span style="color: red;">*</span></label>
-                                                                    <input required   type="hidden"  name="deskripsi_product">
-                                                                    <trix-editor  input="deskripsi_product_edit" ></trix-editor>
+                                                                    <input required  id="deskripsi_product_edit"   type="hidden"  name="deskripsi_product">
+                                                                    <trix-editor class="deskripsi_product_edit" input="deskripsi_product_edit" ></trix-editor>
                                                                 </div>
                                                                 <div class="error_deskripsi_product_edit ">
                                                                 </div>
@@ -292,6 +350,10 @@
                             </div>
                         </div>
                         <div id="container" class=" table-responsive">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary mb-3" onClick="showCreate()">
+                                Tambah Product
+                            </button>
                             <table id="table_product" class="mt-3 table table-hover">
                                 <thead>
                                     <tr>
@@ -336,7 +398,7 @@
 //Show Create Product
 function showCreate(){
     $('#ModalCreate').modal('show');
-};      
+};  
 
 
 // Create Ajax Product
@@ -353,12 +415,58 @@ function CreateData(){
                   showConfirmButton: false,
                   timer: 1500
                 });
+                // Remove if have error in Form
+                        
+                        $('.error_nama_product').removeClass('error-feedback');
+                        $('.error_nama_product').empty();
+                        $('#nama_product').removeClass('is-invalid')
+                        $('#nama_product').removeClass('is-valid')
+
+                        $('.error_info_product').removeClass('error-feedback');
+                        $('.error_info_product').empty();
+                        $('#info_product').removeClass('is-invalid');
+                        $('#info_product').removeClass('is-valid');
+
+                        $('.error_kategori_product').removeClass('error-feedback');
+                        $('.error_kategori_product').empty();
+                        $('#category_id').removeClass('is-invalid');
+                        $('#category_id').removeClass('is-valid');
+
+                        $('.error_harga_product').removeClass('error-feedback');
+                        $('.error_harga_product').empty();
+                        $('#harga_product').removeClass('is-invalid');
+                        $('#harga_product').removeClass('is-valid');
+
+                        const imgPreview = document.querySelector('.img-preview');
+                        imgPreview.removeAttribute('src');
+                        $('.error_gambar_product').removeClass('error-feedback');
+                        $('.error_gambar_product').empty();
+                        $('#gambar_product').removeClass('is-invalid');
+                        $('#gambar_product').removeClass('is-valid');
+
+                        $('.error_gambar_product_detail').removeClass('error-feedback');
+                        $('.error_gambar_product_detail').empty();
+                        $('#gambar_product_detail').removeClass('is-invalid');
+                        $('#gambar_product_detail').removeClass('is-valid');
+
+                        $('.error_gambar_product_detail2').removeClass('error-feedback');
+                        $('.error_gambar_product_detail2').empty();
+                        $('#gambar_product_detail2').removeClass('is-invalid');
+                        $('#gambar_product_detail2').removeClass('is-valid');
+
+                        $('.error_gambar_product_detail3').removeClass('error-feedback');
+                        $('.error_gambar_product_detail3').empty();
+                        $('#gambar_product_detail3').removeClass('is-invalid');
+                        $('#gambar_product_detail3').removeClass('is-valid');
+                        
+                        $('.error_deskripsi_product').removeClass('error-feedback');
+                        $('#deskripsi_product').removeClass('is-invalid');
+                        $('#deskripsi_product').removeClass('is-valid');
+                        $('.error_deskripsi_product').empty();
                 // Hide Modal Create
                 $('#ModalCreate').modal('hide');
                 // Reset Form
                 $('#form-create-product')[0].reset();
-                //Remove if have Errors
-                
                 //Update DataTable
                 $('#table_product').DataTable().draw();
             },
@@ -482,13 +590,14 @@ function EditData(){
     var productID = $('#product_id').val();
     $('#form-create-product-edit').ajaxForm({
             url: "/dashboard/products/" + productID,
-            type: "PUT",
+            method: "POST",
+            data: {_method:'PUT'},
             dataType: "json",
             success: function(data){
                 Swal.fire({
                   position: 'center',
                   icon: 'success',
-                  title: 'Product berhasil diedit',
+                  title: 'Product berhasil diupdate',
                   showConfirmButton: false,
                   timer: 1500
                 });
@@ -496,13 +605,17 @@ function EditData(){
                 $('#ModalEdit').modal('hide');
                 // Reset Form
                 $('#form-create-product')[0].reset();
-                //Remove if have Errors
-                
                 //Update DataTable
-                $('#table_product').DataTable().draw();
+                $('#table_product').DataTable().draw(false);
             },
             error: function(data){
-                console.log(data);
+                Swal.fire({
+                  position: 'center',
+                  icon: 'error',
+                  title: 'Product Gagal diupdate',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
             }
         }).submit();
 }
@@ -523,8 +636,14 @@ $(document).ready(function () {
             url: "{{ route('products.index') }}",
             type: 'GET'
         },
+        order: [0,'desc'],
         columns: [
-            {data:'id', name: 'id'},
+            {
+                "data" : null, "sortable" : false, 
+                render: function(data,type,row,meta) {
+                    return meta.row+ meta.settings._iDisplayStart + 1
+                }
+            },
             {data:'nama_product', name: 'nama_product'},
             {data:'harga_product', name: 'harga_product'},
             {data:'gambar_product', name: 'gambar_product',searchable:false,orderable: false},
@@ -532,7 +651,7 @@ $(document).ready(function () {
         ]
     });
 
-    // Show Edit Product
+    // Show Modal Edit Product
     $(document).on('click','.edit',function(){
         $('#ModalEdit').modal('show');
         var productID = $(this).attr('id');
@@ -541,7 +660,6 @@ $(document).ready(function () {
             type: "GET",
             dataType: "json",
             success: function(data){
-                console.log(data.product[0]);
                  $('#product_id').val(data.product[0].id);
                  $('#nama_product_edit').val(data.product[0].nama_product);
                  $('#info_product_edit').val(data.product[0].info_product);
@@ -551,13 +669,43 @@ $(document).ready(function () {
                  $('.label_product1_edit').text(data.product[0].gambar_detailProduct1);
                  $('.label_product2_edit').text(data.product[0].gambar_detailProduct2);
                  $('.label_product3_edit').text(data.product[0].gambar_detailProduct3);
-                 $('#deskripsi_product_edit').html(data.product[0].deskripsi_product);
+                 $('.deskripsi_product_edit').html(data.product[0].deskripsi_product);
+            }
+        })    
+    })
+
+    // Show Modal Detail Product
+    $(document).on('click','.detail',function(){
+        $('#ModalDetail').modal('show');
+        var productID = $(this).attr('id');
+        $.ajax({
+            url: "/dashboard/products/get/" + productID,
+            type: "GET",
+            dataType: "json",
+            success: function(data){
+                 $('#nama_detail_product').val(data.product[0].nama_product);
+                 $('.info_detail_product').text(data.product[0].info_product);
+                 $('.category_detail_product').text(data.category);
+                 $('#harga_detail_product').val(data.product[0].harga_product);
+                 $('#gambar_detail_product_utama').attr('src','/storage/gambar_product/' + data.product[0].gambar_product);
+                 $('#gambar_detail_product1').attr('src','/storage/gambar_detailProduct1/' + data.product[0].gambar_detailProduct1);
+                 if(data.product[0].gambar_detailProduct2 ) {
+                    $('#gambar_detail_product2').attr('src','/storage/gambar_detailProduct2/' + data.product[0].gambar_detailProduct2);
+                 }
+                 if(data.product[0].gambar_detailProduct3 ) {
+                    $('#gambar_detail_product3').attr('src','/storage/gambar_detailProduct3/' + data.product[0].gambar_detailProduct3);
+                 }
+                
+                 const regex = /(<([^>]+)>)/ig;
+                 const deskripsi_detail_product = data.product[0].deskripsi_product;
+                 const result = deskripsi_detail_product.replace(regex, "");
+                 $('.deskripsi_detail_product').val(result);
             }
         })    
     })
     
 
-    // // Delete Product
+    // Delete Product
     $(document).on('click','.hapus',function(){
         var productID = $(this).attr('id');
         Swal.fire({
@@ -579,10 +727,17 @@ $(document).ready(function () {
             url: "/dashboard/products/"+ productID,    
             type: 'delete',
             success: function(data){
-                    $('#table_product').DataTable().draw();
+                    // draw(false) = agar ketika reload,tetap stay di current pagination
+                    $('#table_product').DataTable().draw(false);
             },
             error: function(data){
-                console.log('Error:',data);
+                Swal.fire({
+                  position: 'center',
+                  icon: 'error',
+                  title: 'Product Gagal dihapus',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
             }
         });
         }
